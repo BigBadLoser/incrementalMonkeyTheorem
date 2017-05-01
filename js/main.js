@@ -4,10 +4,17 @@ Game.fps = 60;
 var timeOnUnTab;
 var timeOnResume;
 
-var Save = {
-    perSecond: 1,
-    score: 0,
+
+if (window.localStorage.getItem("save")){
+    var Save = load();
 }
+else {
+    var Save = {
+        score: 0,
+        perSecond: 1
+    }
+}
+
 
 Game.run = function() {
   Game.update();
@@ -50,15 +57,13 @@ $(window).focus(function(){
 });
 
 
-window.onLoad = test();
-var SAVE_KEY = 'save';
 
 function save() {
-  window.localStorage.setItem(SAVE_KEY, JSON.stringify(Save));
+  window.localStorage.setItem("save", JSON.stringify(Save));
 }
 function test(){
     Save = load();
 }
 function load() {
-  return JSON.parse(window.localStorage.getItem(SAVE_KEY));
+  return JSON.parse(window.localStorage.getItem("save"));
 }
