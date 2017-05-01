@@ -21,6 +21,7 @@
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/buttons.js"></script>
     <script type="text/javascript" src="js/contracts.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
 
     <!-- HTML5 shim and Respond.js for I vc v vE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -89,18 +90,31 @@
                     <button type="button" class="btn btn-default" id="chimpButton" onclick="chimpButton()">Acquire Chimp</button>
                   </div>  
                 </div>
+                
+<!-- Laboratory Content Start -->
                 <div id="lab" class="tab-pane fade">
-                  <div class="panel panel-primary">
-                    <div class="panel-heading">Test</div>
-                  </div>
+                  <div class="panel-group" id="accordion">
+                      <div class="panel panel-default">
+                          <a class="panel-default" data-toggle="collapse" data-parent="#accordion" href="#content" aria-expanded="false"> 
+                            <div class="panel-heading"> <h4 class="panel-title">Monkey Upgrades <i class="fa fa-caret-down" aria-hidden="true"></i> <i class="fa fa-caret-up" aria-hidden="false"></i> </h4> 
+                            </div> </a>                            
+                          <div id="content" class="panel-collapse collapse">
+                              <div class="panel-body" id="monkeyUpgradess">
+                                
+                              </div>
+                          </div>
+                      </div>
                 </div>
+              </div>
+<!--Laboratory Content End -->
+
+<!-- Contracts content start -->
                 <div id="contracts" class="tab-pane fade">
                   <h4 class="text-center">Contracts Active: 0 / 3</h4>
                   <div id="contractsContainer">
                     
                   </div>
                 </div>
-              </div>
               
             </div>
           </div>    

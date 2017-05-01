@@ -72,3 +72,9 @@ body {
     padding: 0px;
     margin: 0px;
 }
+a[aria-expanded=false] .fa-caret-up {
+   display: none;
+}
+a[aria-expanded=true] .fa-caret-down {
+   display: none;
+}
