@@ -5,7 +5,7 @@ var timeOnUnTab;
 var timeOnResume;
 
 
-if (window.localStorage.getItem("save")){
+if (window.localStorage.getItem("save") != null){
     var Save = load();
 }
 else {
