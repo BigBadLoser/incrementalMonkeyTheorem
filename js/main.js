@@ -44,16 +44,17 @@ Game.update = function(){
     updateLabels();
     updateIncome();
     updateButtons();
+    baited();
     document.title = "Cash: $" + makePretty(Save.cash); //This is temporary
     //save(); //Probably shouldn't do this every second, but I couldn't figure out the intervals and I don't feel like fixing it atm
 }
 function updateLabels(){
-    $("#cash").html("<p>Cash: $" + makePretty(Save.cash) + " + " + makePretty(Save.perSecond) + "/sec" + "</p>");
-    $("#science").html("<p>Science: " + makePretty(Save.science) + " + " + makePretty(Save.sciencePerSecond) + "/sec" + "</p>");
+    $("#cash").html("<p>Cash: $" + makePretty(Save.cash) + " + " + makePretty(Save.perSecond) + " Cash /sec" + "</p>");
+    $("#science").html("<p>Science: " + makePretty(Save.science) + " + " + makePretty(Save.sciencePerSecond) + " Science /sec" + "</p>");
     //
-    $("#monkey").html("<p>Monkeys: " + Monkey.owned + " +" + makePretty( Monkey.totalPerSecond ) + "/sec </p>");
+    $("#monkey").html("<p>Monkeys: " + Monkey.owned + " +" + makePretty( Monkey.totalPerSecond ) + " Cash /sec </p>");
         if (Monkey.owned < 1){ $("#monkey").hide();} else {$("#monkey").show();}
-    $("#chimp").html("<p>Chimp: " + Chimp.owned + " +" + makePretty( Chimp.totalPerSecond ) + "/sec </p>");
+    $("#chimp").html("<p>Chimp: " + Chimp.owned + " +" + makePretty( Chimp.totalPerSecond ) + " Cash /sec </p>");
         if (Chimp.owned < 1){ $("#chimp").hide();} else {$("#chimp").show();}
 }
 
