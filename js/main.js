@@ -1,68 +1,61 @@
 /* global $ */
+/* global makePretty */
 var Game = {};
 Game.fps = 60;
-var timeOnUnTab;
-var timeOnResume;
-
 
 if (load() != null){
     var Save = load();
+    var Monkey = Save.monkey;
 }
 else {
     var Save = {
-        score: 0,
-        perSecond: 1
+        cash: 0,
+        perSecond: 0,
+        fundingPerPress: 10,
+        perSecond: 0,
+        monkey: Monkey,
+        
     }
+    var Monkey = {
+        upgradeIndex: 0,
+        perSecond: 1,
+        totalPerSecond: 0,
+        owned: 0,
+        basePrice: 10,
+    }
+    //alert("test");
 }
-
-
 Game.run = function() {
   Game.update();
 };
-//https://bigbadloser.github.io/incrementalMonkeyTheorem/index.html
 // Start the game loop
 Game._intervalId = setInterval(Game.run, 1000 / Game.fps);
-
 //Updates everything
 Game.update = function(){
-    $("#score").html("Score: " + makePretty(Save.score) );
-    Save.score += Save.perSecond / 60; //This prints the players score
-    document.title = "Score: " + makePretty(Save.score)
-    //document.title = "test";
+    updateLabels();
+    updateIncome();
+    updateButtons();
+    Save.cash += Save.perSecond / 60;
+    document.title = "Cash: $" + makePretty(Save.cash); //This is temporary
+    //save(); //Probably shouldn't do this every second, but I couldn't figure out the intervals and I don't feel like fixing it atm
+}
+function updateLabels(){
+    $("#cash").html("<p>Cash: $" + makePretty(Save.cash) + " + " + makePretty(Save.perSecond) + "/sec" + "</p>");
+    $("#monkey").html("<p>Monkeys: " + Monkey.owned + " +" + makePretty( Monkey.totalPerSecond ) + "/sec </p>");
 }
 
-function makePretty(score){
-    var smallNum;
-    var suffix;
-    if (score > 1000 && score < 1000000){
-        smallNum = Math.round( (score / 1000 ) * 10)  / 10;
-        suffix = "K";
-    }
-    else if (score > 1000000){
-        smallNum = Math.round( (score / 1000000) * 10) / 10;
-        suffix = "M";
-    }
-    else {
-        smallNum = score;
-        suffix = "";
-    }
-    //return smallNum.toFixed(1) + suffix;
-    return smallNum.toFixed(1) + suffix;
+
+function calculateCost(owned, basePrice){
+    return basePrice * Math.pow(1.15, owned);
 }
-$(window).blur(function(){
-});
 
-$(window).focus(function(){
-  //your code
-});
+function updateIncome() {
+    Save.perSecond = Monkey.totalPerSecond;
+}
 
-
-
+//-- Honestly, fuck this save system. This took me like 3 1/2 hours to do, and it ends up being like 4 total lines of code
 function save() {
   window.localStorage.setItem("save", JSON.stringify(Save));
-}
-function test(){
-    Save = load();
 }
 function load() {
   return JSON.parse(window.localStorage.getItem("save"));

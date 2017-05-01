@@ -16,6 +16,10 @@
     <link href="css/main.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript" src="js/makePretty.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/buttons.js"></script>
 
     <!-- HTML5 shim and Respond.js for I vc v vE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -46,9 +50,18 @@
           <div class="panel panel-primary">
             <div class="panel-heading">Stuff</div>
             <div class="panel-body">
-              <button type="button" class="btn btn-default" onclick="save()">save</button>
-              <button type="button" class="btn btn-default" onclick="test()">load</button>
-              <div id="score"></div>
+                <div class="text-center">
+                  <button type="button" class="btn btn-default" id="zeroButton" onclick="zeroButton()">Zero</button>
+                  <button type="button" class="btn btn-default" id="fundingButton" onclick="obtainFunding()">Obtain Funding</button>
+                    <div class="progress" id="fundingProgressContainer">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                      aria-valuemin="0" aria-valuemax="100" style="width:0%" id="fundingProgress">
+                        <span class="sr-only">70% Complete</span>
+                      </div>
+                    </div>
+                  </div>
+              <div id="cash"></div>
+              <div id="monkey"></div>
   
             </div>
           </div>
@@ -67,9 +80,17 @@
                 </ul>
               </div>
               <div class="tab-content">
-                <div id="primates" class="tab-pane fade in active">primates</div>
-                <div id="lab" class="tab-pane fade">lav</div>
-                <div id="contracts" class="tab-pane fade">contracts</div>
+                <div id="primates" class="tab-pane fade in active">
+                  <div class="actionButtons text-center">
+                    <button type="button" class="btn btn-default" id="monkeyButton" onclick="monkeyButton()">Obtain Monkey</button>
+                  </div>  
+                </div>
+                <div id="lab" class="tab-pane fade">
+                  
+                </div>
+                <div id="contracts" class="tab-pane fade">
+                  <h4 class="text-center">Contracts Active: 0</h4>
+                </div>
               </div>
               
             </div>
@@ -85,6 +106,5 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/main.js"></script>
   </body>
 </html>
