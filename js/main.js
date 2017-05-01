@@ -3,12 +3,11 @@ var Game = {};
 Game.fps = 60;
 var timeOnUnTab;
 var timeOnResume;
+
 var Save = {
     perSecond: 1,
-    score: 0
+    score: 0,
 }
-Save.saveString = "perSecond=1; score=0;";
-
 
 Game.run = function() {
   Game.update();
@@ -50,26 +49,16 @@ $(window).focus(function(){
   //your code
 });
 
-function load() {
-    //alert(window.localStorage.getItem("save"));
-    Save.score = parseInt(readSaveString("score"));
-}
 
-window.onLoad = load();
+window.onLoad = test();
+var SAVE_KEY = 'save';
 
 function save() {
-    Save.saveString = "perSecond=1; score= " + Save.score + ";"
-    window.localStorage.setItem("save", Save.saveString);
-    alert("Saved");
+  window.localStorage.setItem(SAVE_KEY, JSON.stringify(Save));
 }
-
-function readSaveString(name) {
-    var nameEQ = name + "=";
-    var ca = Save.saveString.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
+function test(){
+    Save = load();
+}
+function load() {
+  return JSON.parse(window.localStorage.getItem(SAVE_KEY));
 }
