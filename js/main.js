@@ -7,13 +7,13 @@ var Save = {
     perSecond: 1,
     score: 0
 }
-Save.saveString = "perSecond=1; score= " + Save.score + ";";
+Save.saveString = "perSecond=1; score=0;";
 
 
 Game.run = function() {
   Game.update();
 };
-
+https://bigbadloser.github.io/incrementalMonkeyTheorem/index.html
 // Start the game loop
 Game._intervalId = setInterval(Game.run, 1000 / Game.fps);
 
