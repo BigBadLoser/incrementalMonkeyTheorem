@@ -19,7 +19,7 @@ else {
 Game.run = function() {
   Game.update();
 };
-https://bigbadloser.github.io/incrementalMonkeyTheorem/index.html
+//https://bigbadloser.github.io/incrementalMonkeyTheorem/index.html
 // Start the game loop
 Game._intervalId = setInterval(Game.run, 1000 / Game.fps);
 
