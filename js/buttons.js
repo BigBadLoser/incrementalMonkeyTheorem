@@ -1,6 +1,8 @@
 /*global Save */
 /*global Monkey */
 /*global $ */
+/*global Chimp */
+/*global calculateCost */
 function monkeyButton() {
     var cost = calculateCost(Monkey.owned, Monkey.basePrice);
     if (Save.cash >= cost ){ //I could have hard coded this really, since it's not as dynamic as it I thought it would be.
@@ -11,6 +13,18 @@ function monkeyButton() {
     else {
         notEnoughMoney();
     }
+}
+
+function chimpButton() {
+    var cost = calculateCost(Chimp.owned, Chimp.basePrice);
+    if (Save.cash >= cost ){
+        Chimp.owned++;
+        Save.cash -= cost;
+        Chimp.totalPerSecond = Chimp.owned * Chimp.perSecond;
+    }
+    else {
+        notEnoughMoney();
+    }    
 }
 function zeroButton() {
     Save.perSecond = 0;
@@ -41,4 +55,5 @@ function notEnoughMoney() {
 
 function updateButtons(){
     $("#monkeyButton").html("Obtain Monkey - " + makePretty( calculateCost( Monkey.owned, Monkey.basePrice ) ) );
+    $("#chimpButton").html("Acquire Chimp - " + makePretty( calculateCost( Chimp.owned, Chimp.basePrice ) ) );
 }

@@ -10,7 +10,9 @@ if (load() != null){
 else {
     var Save = {
         cash: 0,
+        science: 0,
         perSecond: 0,
+        sciencePerSecond: 0,
         fundingPerPress: 10,
         perSecond: 0,
         monkey: Monkey,
@@ -22,6 +24,13 @@ else {
         totalPerSecond: 0,
         owned: 0,
         basePrice: 10,
+    }
+    var Chimp = {
+        upgradeIndex: 0,
+        perSecond: 2,
+        totalPerSecond: 0,
+        owned: 0,
+        basePrice: 50,
     }
     //alert("test");
 }
@@ -35,13 +44,17 @@ Game.update = function(){
     updateLabels();
     updateIncome();
     updateButtons();
-    Save.cash += Save.perSecond / 60;
     document.title = "Cash: $" + makePretty(Save.cash); //This is temporary
     //save(); //Probably shouldn't do this every second, but I couldn't figure out the intervals and I don't feel like fixing it atm
 }
 function updateLabels(){
     $("#cash").html("<p>Cash: $" + makePretty(Save.cash) + " + " + makePretty(Save.perSecond) + "/sec" + "</p>");
+    $("#science").html("<p>Science: " + makePretty(Save.science) + " + " + makePretty(Save.sciencePerSecond) + "/sec" + "</p>");
+    //
     $("#monkey").html("<p>Monkeys: " + Monkey.owned + " +" + makePretty( Monkey.totalPerSecond ) + "/sec </p>");
+        if (Monkey.owned < 1){ $("#monkey").hide();} else {$("#monkey").show();}
+    $("#chimp").html("<p>Chimp: " + Chimp.owned + " +" + makePretty( Chimp.totalPerSecond ) + "/sec </p>");
+        if (Chimp.owned < 1){ $("#chimp").hide();} else {$("#chimp").show();}
 }
 
 
@@ -50,7 +63,9 @@ function calculateCost(owned, basePrice){
 }
 
 function updateIncome() {
-    Save.perSecond = Monkey.totalPerSecond;
+    Save.perSecond = Monkey.totalPerSecond + Chimp.totalPerSecond;
+    Save.cash += Save.perSecond / 60;
+    Save.science += Save.sciencePerSecond / 60;
 }
 
 //-- Honestly, fuck this save system. This took me like 3 1/2 hours to do, and it ends up being like 4 total lines of code
