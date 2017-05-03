@@ -5,10 +5,8 @@ Game.fps = 60;
 
 if (load() != null){
     var Save = load();
-    $("#debug").html("worked");
 }
 else {
-    $("#debug").html("didn't");
     var Save = {
         cash: 0,
         science: 0,
@@ -25,6 +23,7 @@ else {
         totalPerSecond: 0,
         owned: 0,
         basePrice: 10,
+        name: "Monkey"
     }
     var Chimp = {
         upgradeIndex: 0,
@@ -32,6 +31,7 @@ else {
         totalPerSecond: 0,
         owned: 0,
         basePrice: 50,
+        name: "Chimp"
     }
     //alert("test");
 }
@@ -47,17 +47,16 @@ Game.update = function(){
     updateButtons();
     updateContracts();
     document.title = "Cash: $" + makePretty(Save.cash); //This is temporary
-    save(); //Probably shouldn't do this every second, but I couldn't figure out the intervals and I don't feel like fixing it atm
+    //save(); //Probably shouldn't do this every second, but I couldn't figure out the intervals and I don't feel like fixing it atm
 }
 
 $('document').ready(function start(){
-    //Start code, this is run once on page creation stuff
-    testMeDaddy();
+    createContracts();
+    createButtons();
 });
 function updateLabels(){
-    //$("#cash").html("<p>Cash: $" + makePretty(Save.cash) + " + " + makePretty(Save.perSecond) + " Cash /sec" + "</p>");
+    $("#cash").html("<p>Cash: $" + makePretty(Save.cash) + " + " + makePretty(Save.perSecond) + " Cash /sec" + "</p>");
     $("#science").html("<p>Science: " + makePretty(Save.science) + " + " + makePretty(Save.sciencePerSecond) + " Science /sec" + "</p>");
-    //
     $("#monkey").html("<p>Monkeys: " + Monkey.owned + " +" + makePretty( Monkey.totalPerSecond ) + " Cash /sec </p>");
         if (Monkey.owned < 1){ $("#monkey").hide();} else {$("#monkey").show();}
     $("#chimp").html("<p>Chimp: " + Chimp.owned + " +" + makePretty( Chimp.totalPerSecond ) + " Cash /sec </p>");

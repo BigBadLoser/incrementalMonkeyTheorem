@@ -1,3 +1,5 @@
+/* makePretty, input the number you want to format.
+** This returns the number in the new format. 1200 -> 1.2K, 1000000 -> 1M, etc. */
 function makePretty(cash){
     var smallNum;
     var suffix;
@@ -16,6 +18,9 @@ function makePretty(cash){
     return smallNum.toFixed(1) + suffix;
 }
 
+/* calculateCost, input the object whose costs you want to use
+** This returns the new cost of the unit based on the progression formula */
 function calculateCost(object){
-    return object.basePrice * Math.pow(1.15, object.owned);
+    return object.basePrice * Math.pow(1.15, object.owned); //from CC
 }
+	

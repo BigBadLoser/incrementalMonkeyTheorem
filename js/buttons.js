@@ -1,8 +1,10 @@
-/*global Save */
-/*global Monkey */
-/*global $ */
-/*global Chimp */
-/*global calculateCost */
+/*global $*/
+/* This will be my attempt at updating the buttons code to be more dynamic
+** I don't even know what the word dynamic means anymore, but I use it to mean
+** Less copy and paste code, more objects and stuff
+*/
+
+/* Old button code example
 function monkeyButton() {
     var cost = calculateCost(Monkey.owned, Monkey.basePrice);
     if (Save.cash >= cost ){ //I could have hard coded this really, since it's not as dynamic as it I thought it would be.
@@ -14,23 +16,41 @@ function monkeyButton() {
         notEnoughMoney();
     }
 }
-
-function chimpButton() {
-    var cost = calculateCost(Chimp.owned, Chimp.basePrice);
-    if (Save.cash >= cost ){
-        Chimp.owned++;
-        Save.cash -= cost;
-        Chimp.totalPerSecond = Chimp.owned * Chimp.perSecond;
+*/
+//<button type="button" class="btn btn-default" id="chimpButton" onclick="chimpButton()">Acquire Chimp</button>
+var buttons = [];
+function Button(object){ //A lot of these variables aren't even necessary, the button will never need them.
+    this.currentCost = object.basePrice;
+    this.html = $('<button/>', {
+        text: 'Obtain ' + object.name + ' - $' + this.currentCost,
+        id: object + 'Button',
+        class: 'btn btn-default',
+        click: function(){
+        if (Save.cash >= currentCost ){ 
+            object.owned++;
+            Save.cash -= currentCost;
+            object.totalPerSecond = object.owned * object.perSecond;
+            this.currentCost = calculateCost(object);
+        }
+        else {
+            notEnoughMoney();
+        }
     }
-    else {
-        notEnoughMoney();
-    }    
+    })
 }
-function zeroButton() {
-    Save.perSecond = 0;
-    Save.cash = 0;
-    window.localStorage.clear;
-    window.localStorage.removeItem("save");
+
+function createButtons() {
+    var monkeyButton = new Button(Monkey); buttons.push(monkeyButton);
+    var chimpButton = new Button(Chimp); buttons.push(chimpButton)
+        for(var i = 0; i < buttons.length; i++){
+        $("#unitButtons").append(buttons[i].html);
+    }
+}
+function updateButtons(){
+    
+}
+function testFunction() {
+    return("nice");
 }
 function obtainFunding(){
     $("#fundingButton").addClass("disabled");
@@ -47,13 +67,14 @@ function obtainFunding(){
     $("#fundingProgress").animate({
     width: "100%"
 }, 4750);
+}
+function zeroButton() {
+    Save.perSecond = 0;
+    Save.cash = 0;
+    window.localStorage.clear;
+    window.localStorage.removeItem("save");
     
 }
-function notEnoughMoney() {
-    
-}
-
-function updateButtons(){
-    $("#monkeyButton").html("Obtain Monkey - " + makePretty( calculateCost( Monkey.owned, Monkey.basePrice ) ) );
-    $("#chimpButton").html("Acquire Chimp - " + makePretty( calculateCost( Chimp.owned, Chimp.basePrice ) ) );
+function notEnoughMoney(){
+    alert("not enough");
 }
