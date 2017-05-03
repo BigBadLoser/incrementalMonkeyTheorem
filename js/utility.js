@@ -13,6 +13,9 @@ function makePretty(cash){
         smallNum = cash;
         suffix = "";
     }
-    //return smallNum.toFixed(1) + suffix;
     return smallNum.toFixed(1) + suffix;
+}
+
+function calculateCost(object){
+    return object.basePrice * Math.pow(1.15, object.owned);
 }

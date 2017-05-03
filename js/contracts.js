@@ -17,7 +17,11 @@ function Contract(title, id, reward, description){
 
 var test = new Contract("Test Title", "test", 100000, "This is a test description");
 var test2 = new Contract("Test Title2", "test2", 10, "test")
-function baited(){
+function createContracts(){
     $("#contractsContainer").html(test.html);
     $("#contractsContainer").append(test2.html);
+}
+
+function updateContracts(){
+    //update contracts here man
 }
