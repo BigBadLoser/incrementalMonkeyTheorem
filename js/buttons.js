@@ -20,15 +20,14 @@ function monkeyButton() {
 //<button type="button" class="btn btn-default" id="chimpButton" onclick="chimpButton()">Acquire Chimp</button>
 var buttons = [];
 function Button(object){ //A lot of these variables aren't even necessary, the button will never need them.
-    this.currentCost = object.basePrice;
     this.html = $('<button/>', {
-        text: 'Obtain ' + object.name + ' - $' + this.currentCost,
+        text: 'Obtain ' + object.name + ' - $' + object.basePrice,
         id: object + 'Button',
         class: 'btn btn-default',
         click: function(){
-        if (Save.cash >= currentCost ){ 
+        if (Save.cash >= calculateCost(object) ){ 
             object.owned++;
-            Save.cash -= currentCost;
+            Save.cash -= calculateCost(object);
             object.totalPerSecond = object.owned * object.perSecond;
             this.currentCost = calculateCost(object);
         }

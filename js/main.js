@@ -8,13 +8,12 @@ if (load() != null){
 }
 else {
     var Save = {
-        cash: 0,
+        cash: 1000,
         science: 0,
         perSecond: 0,
         sciencePerSecond: 0,
         fundingPerPress: 10,
         perSecond: 0,
-        monkey: Monkey,
         
     }
     var Monkey = {
