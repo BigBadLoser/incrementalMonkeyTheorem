@@ -21,15 +21,16 @@ function monkeyButton() {
 var buttons = [];
 function Button(object){ //A lot of these variables aren't even necessary, the button will never need them.
     this.html = $('<button/>', {
-        text: 'Obtain ' + object.name + ' - $' + object.basePrice,
-        id: object + 'Button',
+        text: 'Obtain ' + object.name + ' - $' + calculateCost(object),
+        id: object.name + "Button",
         class: 'btn btn-default',
         click: function(){
         if (Save.cash >= calculateCost(object) ){ 
-            object.owned++;
             Save.cash -= calculateCost(object);
+            object.owned++;
             object.totalPerSecond = object.owned * object.perSecond;
             this.currentCost = calculateCost(object);
+            $("#" + this.id).text("Obtain " + object.name + ' - $' + makePretty( calculateCost( object ) ) );
         }
         else {
             notEnoughMoney();
@@ -46,10 +47,6 @@ function createButtons() {
     }
 }
 function updateButtons(){
-    
-}
-function testFunction() {
-    return("nice");
 }
 function obtainFunding(){
     $("#fundingButton").addClass("disabled");
@@ -75,5 +72,4 @@ function zeroButton() {
     
 }
 function notEnoughMoney(){
-    alert("not enough");
 }

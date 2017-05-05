@@ -8,7 +8,7 @@ if (load() != null){
 }
 else {
     var Save = {
-        cash: 1000,
+        cash: 0,
         science: 0,
         perSecond: 0,
         sciencePerSecond: 0,
@@ -46,7 +46,7 @@ Game.update = function(){
     updateButtons();
     updateContracts();
     document.title = "Cash: $" + makePretty(Save.cash); //This is temporary
-    //save(); //Probably shouldn't do this every second, but I couldn't figure out the intervals and I don't feel like fixing it atm
+    //save(); //broken atm, why? I don't know!
 }
 
 $('document').ready(function start(){
