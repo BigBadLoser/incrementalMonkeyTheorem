@@ -54,11 +54,11 @@ $('document').ready(function start(){
     createButtons();
 });
 function updateLabels(){
-    $("#cash").html("<p>Cash: $" + makePretty(Save.cash) + " + " + makePretty(Save.perSecond) + " Cash /sec" + "</p>");
-    $("#science").html("<p>Science: " + makePretty(Save.science) + " + " + makePretty(Save.sciencePerSecond) + " Science /sec" + "</p>");
-    $("#monkey").html("<p>Monkeys: " + Monkey.owned + " +" + makePretty( Monkey.totalPerSecond ) + " Cash /sec </p>");
+    $("#cash").html("<p>Cash: $" + makePretty(Save.cash) + " + $" + makePretty(Save.perSecond) + " /sec" + "</p>");
+    $("#science").html("<p>Science: " + makePretty(Save.science) + " + " + makePretty(Save.sciencePerSecond) + " /sec" + "</p>");
+    $("#monkey").html("<p>Monkeys: " + Monkey.owned + " + $" + makePretty( Monkey.totalPerSecond ) + " /sec </p>");
         if (Monkey.owned < 1){ $("#monkey").hide();} else {$("#monkey").show();}
-    $("#chimp").html("<p>Chimp: " + Chimp.owned + " +" + makePretty( Chimp.totalPerSecond ) + " Cash /sec </p>");
+    $("#chimp").html("<p>Chimp: " + Chimp.owned + " + $" + makePretty( Chimp.totalPerSecond ) + " /sec </p>");
         if (Chimp.owned < 1){ $("#chimp").hide();} else {$("#chimp").show();}
 }
 function updateIncome() {

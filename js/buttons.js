@@ -1,7 +1,7 @@
 /*global $*/
-/* This will be my attempt at updating the buttons code to be more dynamic
-** I don't even know what the word dynamic means anymore, but I use it to mean
-** Less copy and paste code, more objects and stuff
+/* A better name for this file would be unitButtons.js, becase this only handles the unit buttons.
+** The upgrades.js handles the upgrades buttons, and the contracts.js handles the contracts buttons.
+** I could edit my button object to take 'purpose' as input, and have that be eitherm 
 */
 
 /* Old button code example

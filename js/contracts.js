@@ -1,4 +1,5 @@
 /*global $*/
+var contracts = [];
 function Contract(title, id, reward, description){
     this.title = title;
     this.reward = reward;
@@ -6,8 +7,9 @@ function Contract(title, id, reward, description){
     this.id = id;
     this.active = false;
     this.complete = false;
+    this.addTo = function (){contracts.push(this);}; this.addTo();
     
-    this.html = '<div class="panel panel-primary panel-info" id="' + id +'"> \
+    this.html = '<div class="panel panel-primary panel-info" onclick="" id="' + id +'"> \
         <div class="panel-heading text-center"> <h5>' + title + '</h5><h6>Reward: $' + reward + '</h6></div> \
             <div class="panel-body"> \
                 ' + description + ' \
@@ -15,11 +17,12 @@ function Contract(title, id, reward, description){
     </div>'
 }
 
-var test = new Contract("Test Title", "test", 100000, "This is a test description");
-var test2 = new Contract("Test Title2", "test2", 10, "test")
 function createContracts(){
-    $("#contractsContainer").html(test.html);
-    $("#contractsContainer").append(test2.html);
+    var test = new Contract("Test Title", "test", 100000, "This is a test description");
+    
+    for (var i = 0; i < contracts.length; i++){
+        $("#contracts").append(contracts[i].html);
+    }
 }
 
 function updateContracts(){
